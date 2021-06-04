@@ -1,4 +1,3 @@
-# Your parking gargage class should have the following methods:
 class Parking_garage():
 
     '''
@@ -21,80 +20,38 @@ class Parking_garage():
             elif result.lower() == 'checkout':
                 Parking_garage.pay_for_parking(self)
                 print("Have a great day! Watch for moose!")
-                break
             elif result.lower() == 'quit':
                 break
             else:
                 print('''\n\nPlease type one of the following prompts: \nFor recieving a ticket and gaining access to the garage, \nplease type "Get".\nFor checking out and escaping the parking garage,\nplease type "Checkout". \nIf you'd like to quit the process and not get a ticket, \nplease type "Quit".\n\n\n''')
 
-# - takeTicket
     def take_ticket(self):
         if len(self.spaces) == 0:
             print("We're full! Sorry")
         else:
             new_ticket = self.tickets.pop(0)
-            new_space = self.spaces.pop(0)
             print(f'Your ticket number is {new_ticket}')
             self.current_ticket[new_ticket] = "unpaid"
-            # print(self.spaces)
- 
-
-# - This should decrease the amount of tickets available by 1
-# - This should decrease the amount of parkingSpaces available by 1
-# - payForParking
-
 
     def pay_for_parking(self):
-        # for key, value in self.current_ticket.items():
-        #     if value == 'unpaid':
-        response = input("Would you like to checkout? y/n ")
-        if response.lower() == 'y':
-            print(self.current_ticket)
-            ticket_key = input('What was your ticket number?')
-            if int(ticket_key) in self.current_ticket.keys():
-                ticket_key_update = int(ticket_key)
-                # self.current_ticket[ticket_key_update] = 'paid'
-                print(self.current_ticket)
-                if ticket_key_update in self.spaces:
-                    print("You paid for this tick")
-                self.spaces.append(ticket_key_update)
-                print(sorted(self.spaces))
+        ticket_num = input("What is your ticket number? ")
+        ticket_num_int = int(ticket_num)
+        if ticket_num_int in self.current_ticket:
+            pay = input("Press 'p' to pay ")
+            if pay.lower() == 'p':
+                self.tickets.append(ticket_num_int)
+                self.spaces.append(ticket_num_int)
+                if len(self.current_ticket) > 0:
+                    self.current_ticket.pop(ticket_num_int)
+                else:
+                    print("Garage is full")
+                    pass
             else:
-                print(f"Invalid entry")
-                Parking_garage.pay_for_parking(self)
-        
-
-            # printed_number
-            # need to add space back
-            print("Thanks for your money. You have 15 minutes to leave.")
-            # self.spaces.insert(len(self.spaces) + 1)
-            Parking_garage.decision_tree(self)
-        elif response.lower() == 'n':
-            Parking_garage.decision_tree(self)
+                print("Press 'p' better next time ")
+                Parking_garage.decision_tree(self)
         else:
-            print('You have already paid. Get out')
+            print("That ticket is not available")
 
-
-
-# - Display an input that waits for an amount from the user and store it in a variable
-# - If the payment variable is not empty then (meaning the ticket has been paid) -> display a message to the user that their ticket has been paid and they have 15mins to leave
-# - This should update the "currentTicket" dictionary key "paid" to True
-
-
-# -leaveGarage
-
- #   def leave_garage(self):
-  #      pass
-# - If the ticket has been paid, display a message of "Thank You, have a nice day"
-# - If the ticket has not been paid, display an input prompt for payment
-# - Once paid, display message "Thank you, have a nice day!"
-# - Update parkingSpaces list to increase by 1 (meaning add to the parkingSpaces list)
-# - Update tickets list to increase by 1 (meaning add to the tickets list)
-
-# You will need a few attributes as well:
-# - tickets -> list
-# - parkingSpaces -> list
-# - currentTicket -> dictionary
 
 def run_garage():
     ticket_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
