@@ -19,7 +19,6 @@ class Parking_garage():
                 Parking_garage.take_ticket(self)
             elif result.lower() == 'checkout':
                 Parking_garage.pay_for_parking(self)
-                print("Have a great day! Watch for moose!")
             elif result.lower() == 'quit':
                 break
             else:
@@ -29,9 +28,13 @@ class Parking_garage():
         if len(self.spaces) == 0:
             print("We're full! Sorry")
         else:
-            new_ticket = self.tickets.pop(0)
-            print(f'Your ticket number is {new_ticket}')
-            self.current_ticket[new_ticket] = "unpaid"
+            if len(self.tickets) > 0:
+                new_ticket = self.tickets.pop(0)
+                print(f'Your ticket number is {new_ticket}')
+                self.current_ticket[new_ticket] = "unpaid"
+            else:
+                print('We are out of space! Sorry!')
+                Parking_garage.decision_tree(self)
 
     def pay_for_parking(self):
         ticket_num = input("What is your ticket number? ")
@@ -42,7 +45,11 @@ class Parking_garage():
                 self.tickets.append(ticket_num_int)
                 self.spaces.append(ticket_num_int)
                 if len(self.current_ticket) > 0:
+                    ccd = input('Credit Card Number: ')
+                    exp = input('Expiration date: ')
+                    security = input('Security code: ')
                     self.current_ticket.pop(ticket_num_int)
+                    print("Have a great day! Watch for moose!")
                 else:
                     print("Garage is full")
                     pass
