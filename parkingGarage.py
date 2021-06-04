@@ -25,7 +25,7 @@ class Parking_garage():
             elif result.lower() == 'quit':
                 break
             else:
-                print('''\n\nPlease type one of the following prompts: \nFor recieving a ticket and gaining access to the garage, \nplease type "Get".\nFor checking out and escaping the parking garage,\nplease type "Checkout". \nIf you'd like to quit the process and not get a ticket, type "Quit".\n\n\n''')
+                print('''\n\nPlease type one of the following prompts: \nFor recieving a ticket and gaining access to the garage, \nplease type "Get".\nFor checking out and escaping the parking garage,\nplease type "Checkout". \nIf you'd like to quit the process and not get a ticket, \nplease type "Quit".\n\n\n''')
 
 # - takeTicket
     def take_ticket(self):
@@ -36,7 +36,7 @@ class Parking_garage():
             new_space = self.spaces.pop(0)
             print(f'Your ticket number is {new_ticket}')
             self.current_ticket[new_ticket] = "unpaid"
-            print(self.spaces)
+            # print(self.spaces)
  
 
 # - This should decrease the amount of tickets available by 1
@@ -45,27 +45,34 @@ class Parking_garage():
 
 
     def pay_for_parking(self):
-        for key, value in self.current_ticket.items():
-            if value == 'unpaid':
-                response = input("Would you like to checkout? y/n ")
-                if response.lower() == 'y':
-                    print(self.current_ticket)
-                    ticket_key = input('What was your ticket number?')
-                    ticket_key_update = int(ticket_key)
-                    self.current_ticket[ticket_key_update] = 'paid'
-                    print(self.current_ticket)
-                    ticket_number_temp = self.current_ticket.pop(key)
-                    self.spaces.append(ticket_key_update)
-                    print(sorted(self.spaces))
-                    # printed_number
-                    # need to add space back
-                    print("Thanks for your money. You have 15 minutes to leave.")
-                    # self.spaces.insert(len(self.spaces) + 1)
-                    Parking_garage.decision_tree()
-                elif response.lower() == 'n':
-                    Parking_garage.decision_tree()
+        # for key, value in self.current_ticket.items():
+        #     if value == 'unpaid':
+        response = input("Would you like to checkout? y/n ")
+        if response.lower() == 'y':
+            print(self.current_ticket)
+            ticket_key = input('What was your ticket number?')
+            if int(ticket_key) in self.current_ticket.keys():
+                ticket_key_update = int(ticket_key)
+                # self.current_ticket[ticket_key_update] = 'paid'
+                print(self.current_ticket)
+                if ticket_key_update in self.spaces:
+                    print("You paid for this tick")
+                self.spaces.append(ticket_key_update)
+                print(sorted(self.spaces))
             else:
-                print('You have already paid. Get out')
+                print(f"Invalid entry")
+                Parking_garage.pay_for_parking(self)
+        
+
+            # printed_number
+            # need to add space back
+            print("Thanks for your money. You have 15 minutes to leave.")
+            # self.spaces.insert(len(self.spaces) + 1)
+            Parking_garage.decision_tree(self)
+        elif response.lower() == 'n':
+            Parking_garage.decision_tree(self)
+        else:
+            print('You have already paid. Get out')
 
 
 
