@@ -27,7 +27,7 @@ class Parking_garage():
 
     def take_ticket(self):
 
-# butttttttttttttttttttttttttttts
+        # butts
         
 
 # - This should decrease the amount of tickets available by 1
