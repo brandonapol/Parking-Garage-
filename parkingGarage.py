@@ -24,8 +24,16 @@ class Parking_garage():
                 print('That is not a valid answer')
 
 # - takeTicket
-
     def take_ticket(self):
+        if len(self.spaces) == 0:
+            print("We're full! Sorry")
+        else:
+            new_ticket = self.tickets.pop(0)
+            new_space = self.spaces.pop(0)
+            self.current_ticket[new_ticket] = "unpaid"
+            print(self.spaces)
+    
+    
         
 
 # - This should decrease the amount of tickets available by 1
@@ -34,6 +42,7 @@ class Parking_garage():
 
 
     def pay_for_parking(self):
+        pass
 
 # - Display an input that waits for an amount from the user and store it in a variable
 # - If the payment variable is not empty then (meaning the ticket has been paid) -> display a message to the user that their ticket has been paid and they have 15mins to leave
@@ -43,6 +52,7 @@ class Parking_garage():
 # -leaveGarage
 
     def leave_garage(self):
+        pass
 # - If the ticket has been paid, display a message of "Thank You, have a nice day"
 # - If the ticket has not been paid, display an input prompt for payment
 # - Once paid, display message "Thank you, have a nice day!"
@@ -55,7 +65,9 @@ class Parking_garage():
 # - currentTicket -> dictionary
 
 def run_garage():
-    ticket_list = []
+    ticket_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     spaces_available = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     garage = Parking_garage(ticket_list, spaces_available)
     garage.decision_tree()
+
+run_garage()   
