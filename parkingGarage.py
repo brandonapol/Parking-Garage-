@@ -32,9 +32,7 @@ class Parking_garage():
             new_space = self.spaces.pop(0)
             self.current_ticket[new_ticket] = "unpaid"
             print(self.spaces)
-    
-    
-        
+            Parking_garage.pay_for_parking(self)
 
 # - This should decrease the amount of tickets available by 1
 # - This should decrease the amount of parkingSpaces available by 1
@@ -42,7 +40,18 @@ class Parking_garage():
 
 
     def pay_for_parking(self):
-        pass
+        for key, value in self.current_ticket:
+            if value == 'unpaid':
+                response = input("Would you like to pay? y/n ")
+                if response.lower() == 'y':
+                    self.current_tickets.pop(key)
+                    print(self.current_ticket)
+                    print("Thanks for your money")
+                    break
+                elif response.lower() == 'n':
+                    pass 
+
+
 
 # - Display an input that waits for an amount from the user and store it in a variable
 # - If the payment variable is not empty then (meaning the ticket has been paid) -> display a message to the user that their ticket has been paid and they have 15mins to leave
@@ -51,8 +60,8 @@ class Parking_garage():
 
 # -leaveGarage
 
-    def leave_garage(self):
-        pass
+ #   def leave_garage(self):
+  #      pass
 # - If the ticket has been paid, display a message of "Thank You, have a nice day"
 # - If the ticket has not been paid, display an input prompt for payment
 # - Once paid, display message "Thank you, have a nice day!"
