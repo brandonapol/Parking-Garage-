@@ -18,7 +18,11 @@ class Parking_garage():
             if result.lower() == 'get':
                 Parking_garage.take_ticket(self)
             elif result.lower() == 'checkout':
-                Parking_garage.pay_for_parking(self)
+                if len(self.tickets) == 10:
+                    print("You're not even in the garage")
+                    break
+                else:
+                    Parking_garage.pay_for_parking(self)
             elif result.lower() == 'quit':
                 break
             else:
