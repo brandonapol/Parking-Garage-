@@ -14,11 +14,15 @@ class Parking_garage():
 
     def decision_tree(self):
         while True:
-            result = input('How can we help? \n - Get Ticket ("Get") \n - Checkout ("Checkout") \n - Quit ("Quit")\n - Help ("Help")')
+            result = input('How can we help? \n - Get Ticket ("Get") \n - Checkout ("Checkout") \n - Quit ("Quit")\n - Help ("Help")\n')
             if result.lower() == 'get':
                 Parking_garage.take_ticket(self)
             elif result.lower() == 'checkout':
-                Parking_garage.pay_for_parking(self)
+                if len(self.tickets) == 10:
+                    print("\nYou're not even in the garage\n")
+                    Parking_garage.decision_tree(self)
+                else:
+                    Parking_garage.pay_for_parking(self)
             elif result.lower() == 'quit':
                 break
             else:
@@ -30,7 +34,7 @@ class Parking_garage():
         else:
             if len(self.tickets) > 0:
                 new_ticket = self.tickets.pop(0)
-                print(f'Your ticket number is {new_ticket}')
+                print(f'Your ticket number is {new_ticket}\n')
                 self.current_ticket[new_ticket] = "unpaid"
             else:
                 print('We are out of space! Sorry!')
@@ -49,12 +53,12 @@ class Parking_garage():
                     exp = input('Expiration date: ')
                     security = input('Security code: ')
                     self.current_ticket.pop(ticket_num_int)
-                    print("Have a great day! Watch for moose!")
+                    print("Have a great day! Watch for moose!\n")
                 else:
                     print("Garage is full")
                     pass
             else:
-                print("Press 'p' better next time ")
+                print("Press 'p' better next time\n")
                 Parking_garage.decision_tree(self)
         else:
             print("That ticket is not available")
