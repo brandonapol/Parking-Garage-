@@ -14,7 +14,7 @@ class Parking_garage():
 
     def decision_tree(self):
         while True:
-            result = input('How can we help? \n - Get Ticket ("Get") \n - Checkout ("Checkout") \n - Show Current Ticket(s) ("Show") \n - Help ("Help")\n - Quit ("Quit")')
+            result = input('How can we help? \n - Get Ticket ("Get") \n - Checkout ("Checkout") \n - Show Current Ticket(s) ("Show") \n - Help ("Help")\n - Quit ("Quit")\n')
             if result.lower() == 'get':
                 Parking_garage.take_ticket(self)
             elif result.lower() == 'checkout':
