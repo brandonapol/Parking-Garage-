@@ -14,7 +14,7 @@ class Parking_garage():
 
     def decision_tree(self):
         while True:
-            result = input('How can we help? \n - Get Ticket ("Get") \n - Checkout ("Checkout") \n - Quit ("Quit")\n - Help ("Help")\n')
+            result = input('How can we help? \n - Get Ticket ("Get") \n - Checkout ("Checkout") \n - Show Current Ticket(s) ("Show") \n - Help ("Help")\n - Quit ("Quit")')
             if result.lower() == 'get':
                 Parking_garage.take_ticket(self)
             elif result.lower() == 'checkout':
@@ -23,10 +23,12 @@ class Parking_garage():
                     Parking_garage.decision_tree(self)
                 else:
                     Parking_garage.pay_for_parking(self)
+            elif result.lower() == "show":
+                print(self.current_ticket)
             elif result.lower() == 'quit':
                 break
             else:
-                print('''\n\nPlease type one of the following prompts: \nFor recieving a ticket and gaining access to the garage, \nplease type "Get".\nFor checking out and escaping the parking garage,\nplease type "Checkout". \nIf you'd like to quit the process and not get a ticket, \nplease type "Quit".\n\n\n''')
+                print('''\n\nPlease type one of the following prompts: \n\nFor recieving a ticket and gaining access to the garage, \nplease type "Get".\nFor checking out and escaping the parking garage,\nplease type "Checkout". \nIf you'd like to quit the process and not get a ticket, \nplease type "Checkout". \nIf you'd like to show your current ticket(s)\nplease type "Show" \nIf you'd like to quit the process and not get a ticket,\nplease type "Quit".\n\n\n''')
 
     def take_ticket(self):
         if len(self.spaces) == 0:
